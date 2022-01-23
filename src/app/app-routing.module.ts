@@ -7,16 +7,30 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'commerce-by-products',
-    loadChildren: () => import('./pages/commerce-by-products/commerce-by-products.module').then( m => m.CommerceByProductsPageModule)
-  },
-  {
     path: 'categories',
     loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   },
   {
+    path: 'products-by-categories',
+    loadChildren: () => import('./pages/products-by-categories/products-by-categories.module').then( m => m.ProductsByCategoriesPageModule)
+  },
+  {
+    path: 'commerces-by-products',
+    loadChildren: () => import('./pages/commerces-by-products/commerces-by-products.module').then( m => m.CommercesByProductsPageModule)
+  },
+  {
+    path: 'commerce-product-detail',
+    loadChildren: () => import('./pages/commerce-product-detail/commerce-product-detail.module')
+    .then( m => m.CommerceProductDetailPageModule)
+  },
+  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'categories',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'categories',
     pathMatch: 'full'
   },
 ];

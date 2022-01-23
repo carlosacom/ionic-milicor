@@ -1,0 +1,31 @@
+<app-header [showBackButton]="true" [title]="product.name"></app-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="5">
+            <img [src]="product.image" />
+          </ion-col>
+          <ion-col size="7">
+            <ion-card-title>{{ product.name }}</ion-card-title>
+            <ion-card-subtitle>{{ product.content }}</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-list-header>Comercios</ion-list-header>
+    <ion-item *ngFor="let commerceByProduct of commercesByProduct" detail [routerLink]="['/commerce-product-detail', commerceByProduct._id]">
+      <ion-avatar slot="start">
+        <img [src]="commerceByProduct.commerce.image">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ commerceByProduct.commerce.name }}</h2>
+        <h3><b>$ {{ commerceByProduct.price | number: '0.0-2' }}</b></h3>
+        <p>{{ commerceByProduct.commerce.address }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

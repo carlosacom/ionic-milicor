@@ -1,0 +1,15 @@
+<app-header [showBackButton]="true" title="Productos"></app-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of products" detail="true" [routerLink]="['/commerces-by-products', 'product', product._id]">
+      <ion-avatar slot="start">
+        <img [src]="product.image"/>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+        <h3>{{ product.content }}</h3>
+        <p>{{ product.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,42 @@
+<app-header [showBackButton]="true" title="Detalle del producto"></app-header>
+<ion-content *ngIf="commerceProduct">
+  <ion-grid fixed style="background: #1F2228;">
+    <ion-row class="ion-align-items-center ion-padding-vertical">
+      <ion-col size="5">
+        <img [src]="commerceProduct.product.image" alt="">
+      </ion-col>
+      <ion-col size="7">
+        <ion-card-title color="tertiary">{{ commerceProduct.product.name}}</ion-card-title>
+        <ion-card-subtitle>{{ commerceProduct.product.content }}</ion-card-subtitle>
+        <ion-card-title color="tertiary" class="ion-padding-vertical"><b>$&nbsp;{{ commerceProduct.price | number: '0.0-2'}}</b></ion-card-title>
+        <ion-button color="primary" expand="block" (click)="buyProduct()">Comprar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card color="tertiary" class="ion-margin-top">
+    <ion-card-content>
+      <ion-text color="secondary">
+        <h2>Descripción</h2>
+        <p class="ion-text-justify ion-padding-top">{{ commerceProduct.product.description }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-text color="primary" class="ion-text-center ion-margin-top">
+    <h1>Establecimiento</h1>
+  </ion-text>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6">
+        <img [src]="commerceProduct.commerce.image">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="secondary" class="ion-text-center">
+          <h1>{{ commerceProduct.commerce.name }}</h1>
+          <p>{{ commerceProduct.commerce.address }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

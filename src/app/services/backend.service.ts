@@ -54,5 +54,8 @@ export class BackendService {
   }
 
   getCategories = () => this.getQuery('/categories', false);
-
+  getProducts = category => this.getQuery(`/products/category/${category}`, false);
+  getProduct = productId => this.getQuery(`/products/${ productId }`, false);
+  getCommercesByproduct = product => this.getQuery(`/commerce-products/product/${product}`, false);
+  getCommerceProduct  = commerceProdut => this.getQuery(`/commerce-products/${commerceProdut}`, false);
 }
