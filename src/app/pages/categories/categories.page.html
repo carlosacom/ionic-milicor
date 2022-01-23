@@ -1,0 +1,18 @@
+<app-header title="Categorías"></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let category of categories">
+        <ion-card>
+          <div style="display: flex; align-items: center;justify-content: center;" class="ion-padding-top">
+            <img [src]="category.image" />
+          </div>
+          <ion-card-content>
+            <ion-card-title>{{ category.name }}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
