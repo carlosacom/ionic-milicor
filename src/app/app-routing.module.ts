@@ -25,12 +25,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'categories',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'categories',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 ];

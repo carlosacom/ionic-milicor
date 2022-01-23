@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
@@ -7,17 +8,29 @@ import { BackendService } from 'src/app/services/backend.service';
   templateUrl: './commerces-by-products.page.html',
   styleUrls: ['./commerces-by-products.page.scss'],
 })
-export class CommercesByProductsPage {
+export class CommercesByProductsPage implements OnInit{
   commercesByProduct = [];
   product = { name: '', description: '', content:'', image: '' };
   constructor(
     private activatedRoute: ActivatedRoute,
-    private backend: BackendService
+    private backend: BackendService,
+    public alertController: AlertController
   ) {
     this.activatedRoute.params.subscribe(params => {
       this.getProduct(params.product);
       this.getCommerces(params.product);
     });
+  }
+  ngOnInit(): void {
+    this.showWarningPrices();
+  }
+  async showWarningPrices() {
+    const alert = await this.alertController.create({
+      header: 'Tenga en cuenta',
+      message: 'Los precios de los productos pueden estar sujeto a cambios por el establecimiento',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
   getProduct(product: string) {
     this.backend.getProduct(product).then(response => {
@@ -33,5 +46,4 @@ export class CommercesByProductsPage {
       console.error(error);
     });
   }
-
 }

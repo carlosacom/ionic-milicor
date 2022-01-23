@@ -25,8 +25,13 @@ export class CommerceProductDetailPage {
       console.error(error);
     });
   }
-  buyProduct() {
-    window.location.href = 'tel:' + this.commerceProduct.commerce.phone;
+  buyProduct(destiny: 'call' | 'whatsapp') {
+    if (destiny === 'call') {
+      window.location.href = `tel:${this.commerceProduct.commerce.phone}`;
+    } else {
+      // eslint-disable-next-line max-len
+      window.location.href = `https://wa.me/${this.commerceProduct.commerce.phone}/?text=Deseo Comprar ${this.commerceProduct.product.name} De ${this.commerceProduct.product.content}`;
+    }
   }
 
 }
