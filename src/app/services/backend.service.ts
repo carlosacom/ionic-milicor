@@ -13,6 +13,7 @@ export class BackendService {
     private http: HttpClient,
     private userAuth: UserAuthService
   ) {
+    // this.url = 'http://localhost:5000';
     this.url = 'https://milicor-backend-vd6m2qme4q-uc.a.run.app';
   }
 
@@ -58,4 +59,5 @@ export class BackendService {
   getProduct = productId => this.getQuery(`/products/${ productId }`, false);
   getCommercesByproduct = product => this.getQuery(`/commerce-products/product/${product}`, false);
   getCommerceProduct  = commerceProdut => this.getQuery(`/commerce-products/${commerceProdut}`, false);
+  getProductsAndCategories = filter => this.getQuery(`/dashboard/products-categories/filter/${filter}`, false);
 }

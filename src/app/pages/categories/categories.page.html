@@ -1,7 +1,8 @@
 <app-header title="Categorías"></app-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-searchbar (ionChange)="searchChange()" [(ngModel)]="searchValue" placeholder="Busca Categorías o productos"></ion-searchbar>
+  <ion-grid *ngIf="!searchValue; else searchresultsTemplate">
     <ion-row>
       <ion-col size="6" *ngFor="let category of categories">
         <ion-card (click)="goToProducts(category._id)">
@@ -15,4 +16,38 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ng-template #searchresultsTemplate>
+    <ng-container *ngIf="searchResult">
+      <ion-list>
+        <ion-list-header lines="inset">
+          <ion-label>Productos</ion-label>
+        </ion-list-header>
+        <ion-item *ngIf="!searchResult.products.length">
+          <ion-label color="medium">No existen productos</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let product of searchResult.products" detail="true" [routerLink]="['/commerces-by-products', 'product', product._id]">
+          <ion-avatar slot="start">
+            <img [src]="product.image"/>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ product.name }}</h2>
+            <h3>{{ product.content }}</h3>
+            <p>{{ product.description }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-list-header lines="inset">
+          <ion-label>Categorías</ion-label>
+        </ion-list-header>
+        <ion-item *ngIf="!searchResult.categories.length">
+          <ion-label color="medium">No existen categorías</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let category of searchResult.categories" detail="true" (click)="goToProducts(category._id)">
+          <ion-avatar slot="start">
+            <img [src]="category.image"/>
+          </ion-avatar>
+          <ion-label>{{ category.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </ng-template>
 </ion-content>

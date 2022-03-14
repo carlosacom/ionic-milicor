@@ -9,11 +9,16 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class CategoriesPage implements OnInit {
   categories = [];
+  searchValue: string;
+  searchResult: any;
 
   constructor(
     private backend: BackendService,
     private router: Router
-  ) { }
+  ) {
+    this.searchResult = null;
+    this.searchValue = '';
+  }
 
   ngOnInit() {
     this.getCategories();
@@ -30,4 +35,17 @@ export class CategoriesPage implements OnInit {
     this.router.navigate(['/products-by-categories', category]);
   }
 
+
+  searchChange() {
+    if (this.searchValue !== '') {
+      this.backend.getProductsAndCategories(this.searchValue).then(response => {
+        this.searchResult = response;
+        console.log(response);
+      }).catch(error => {
+        console.error(error);
+      });
+    } else {
+      this.searchResult = null;
+    }
+  }
 }
