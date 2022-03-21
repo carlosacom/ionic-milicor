@@ -13,8 +13,8 @@ export class BackendService {
     private http: HttpClient,
     private userAuth: UserAuthService
   ) {
-    this.url = 'http://localhost:5000';
-    // this.url = 'https://milicor-backend-vd6m2qme4q-uc.a.run.app';
+    // this.url = 'http://localhost:5000';
+    this.url = 'https://milicor-backend-vd6m2qme4q-uc.a.run.app';
   }
 
 
