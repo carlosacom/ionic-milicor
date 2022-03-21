@@ -11,6 +11,14 @@ import { BackendService } from 'src/app/services/backend.service';
 export class CommercesByProductsPage implements OnInit{
   commercesByProduct = [];
   product = { name: '', description: '', content:'', image: '' };
+
+  slideOpts = {
+    slidesPerView: 2,
+    slideShadows: true,
+    initialSlide: 1,
+    speed: 400
+  };
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private backend: BackendService,

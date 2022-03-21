@@ -1,53 +1,45 @@
-<app-header title="Categorías"></app-header>
+<app-header title="Compara y compra"></app-header>
 
 <ion-content>
+  <ng-container *ngIf="!searchResult">
+    <ion-text color="primary">
+      <h1 class="ion-text-center">Compara y compra</h1>
+    </ion-text>
+    <ion-text color="secondary">
+      <p class="ion-padding-horizontal ion-text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, similique. Consequuntur, numquam in! Eius quidem corrupti architecto necessitatibus inventore, quo officia totam at laudantium! Quia porro repellendus qui dignissimos provident?</p>
+    </ion-text>
+  </ng-container>
   <ion-searchbar (ionChange)="searchChange()" [(ngModel)]="searchValue" placeholder="Busca Categorías o productos"></ion-searchbar>
-  <ion-grid *ngIf="!searchValue; else searchresultsTemplate">
-    <ion-row>
-      <ion-col size="6" *ngFor="let category of categories">
-        <ion-card (click)="goToProducts(category._id)">
-          <div style="display: flex; align-items: center;justify-content: center;" class="ion-padding-top">
-            <img [src]="category.image" />
-          </div>
-          <ion-card-content>
-            <ion-card-title class="ion-text-center">{{ category.name }}</ion-card-title>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ng-template #searchresultsTemplate>
-    <ng-container *ngIf="searchResult">
-      <ion-list>
-        <ion-list-header lines="inset">
-          <ion-label>Productos</ion-label>
-        </ion-list-header>
-        <ion-item *ngIf="!searchResult.products.length">
-          <ion-label color="medium">No existen productos</ion-label>
-        </ion-item>
-        <ion-item *ngFor="let product of searchResult.products" detail="true" [routerLink]="['/commerces-by-products', 'product', product._id]">
-          <ion-avatar slot="start">
-            <img [src]="product.image"/>
-          </ion-avatar>
-          <ion-label>
-            <h2>{{ product.name }}</h2>
-            <h3>{{ product.content }}</h3>
-            <p>{{ product.description }}</p>
-          </ion-label>
-        </ion-item>
-        <ion-list-header lines="inset">
-          <ion-label>Categorías</ion-label>
-        </ion-list-header>
-        <ion-item *ngIf="!searchResult.categories.length">
-          <ion-label color="medium">No existen categorías</ion-label>
-        </ion-item>
-        <ion-item *ngFor="let category of searchResult.categories" detail="true" (click)="goToProducts(category._id)">
-          <ion-avatar slot="start">
-            <img [src]="category.image"/>
-          </ion-avatar>
-          <ion-label>{{ category.name }}</ion-label>
-        </ion-item>
-      </ion-list>
-    </ng-container>
-  </ng-template>
+  <ng-container *ngIf="searchResult">
+    <ion-list>
+      <ion-list-header lines="inset">
+        <ion-label>Productos</ion-label>
+      </ion-list-header>
+      <ion-item *ngIf="!searchResult.products.length">
+        <ion-label color="medium">No existen productos</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let product of searchResult.products" detail="true" [routerLink]="['/commerces-by-products', 'product', product._id]">
+        <ion-avatar slot="start">
+          <img [src]="product.image"/>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ product.name }}</h2>
+          <h3>{{ product.content }}</h3>
+          <p>{{ product.description }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-list-header lines="inset">
+        <ion-label>Categorías</ion-label>
+      </ion-list-header>
+      <ion-item *ngIf="!searchResult.categories.length">
+        <ion-label color="medium">No existen categorías</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let category of searchResult.categories" detail="true" (click)="goToProducts(category._id)">
+        <ion-avatar slot="start">
+          <img [src]="category.image"/>
+        </ion-avatar>
+        <ion-label>{{ category.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 </ion-content>

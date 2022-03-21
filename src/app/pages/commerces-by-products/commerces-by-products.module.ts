@@ -8,6 +8,7 @@ import { CommercesByProductsPageRoutingModule } from './commerces-by-products-ro
 
 import { CommercesByProductsPage } from './commerces-by-products.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { JsonArrayPipe } from './json-array.pipe';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommercesByProductsPageRoutingModule,
     SharedModule
   ],
-  declarations: [CommercesByProductsPage]
+  declarations: [CommercesByProductsPage, JsonArrayPipe]
 })
 export class CommercesByProductsPageModule {}
