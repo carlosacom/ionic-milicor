@@ -9,6 +9,13 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class CommerceProductDetailPage {
   commerceProduct = null;
+  variantsProducts = [];
+  slideOpts = {
+    slidesPerView: 2,
+    slideShadows: true,
+    initialSlide: 1,
+    speed: 400
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,6 +28,17 @@ export class CommerceProductDetailPage {
   getCommerceProduct(commerceProduct: string) {
     this.backend.getCommerceProduct(commerceProduct).then(response => {
       this.commerceProduct = response;
+      this.getVariants(this.commerceProduct.product.name.split(' ')[0]);
+    }).catch(error => {
+      console.error(error);
+    });
+  }
+
+  getVariants(filter) {
+    this.backend.getProductsFilter(filter).then(response => {
+      // eslint-disable-next-line no-underscore-dangle
+      this.variantsProducts = response.filter(product => product._id !== this.commerceProduct.product._id );
+      console.log(this.variantsProducts);
     }).catch(error => {
       console.error(error);
     });

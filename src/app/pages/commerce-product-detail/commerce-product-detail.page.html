@@ -42,10 +42,25 @@
     <ion-row>
       <ion-col size="12">
         <ion-text color="secondary" class="ion-text-center">
-          <h1>{{ commerceProduct.commerce.name }}</h1>
+          <h3>{{ commerceProduct.commerce.name }}</h3>
           <p>{{ commerceProduct.commerce.address }}</p>
         </ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ng-container *ngIf="variantsProducts.length">
+    <ion-text color="primary" class="ion-text-center ion-margin-top">
+      <h2>Recomendados</h2>
+    </ion-text>
+    <ion-slides pager="true" [options]="slideOpts" [pager]="false">
+      <ion-slide *ngFor="let product of variantsProducts" >
+        <ion-card [routerLink]="['/commerces-by-products', 'product', product._id]">
+          <img [src]="product.image" />
+          <ion-card-header>
+            <ion-card-title><b>{{ product.name }}</b></ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ng-container>
 </ion-content>
