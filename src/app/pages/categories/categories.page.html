@@ -4,12 +4,24 @@
   <ion-grid style="height: 100%;">
     <ion-row style="height: 100%;" class="ion-align-items-center">
       <ion-col size="12">
-          <ion-text color="primary" *ngIf="!searchResult">
-            <h1 class="ion-text-center">Compara y compra</h1>
-          </ion-text>
-        <ion-searchbar (ionChange)="searchChange()" [(ngModel)]="searchValue" placeholder="Busca, compara y compra"></ion-searchbar>
+        <ion-grid *ngIf="!searchResult">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="6" size-xl="3">
+              <div class="ion-text-center text-secondary">
+                <img src="./assets/images/logo-compara-completo.svg">
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" size-xl="6">
+              <ion-searchbar (ionChange)="searchChange()" [(ngModel)]="searchValue" placeholder="Busca, compara y compra"></ion-searchbar>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-text color="secondary" *ngIf="!searchResult">
-          <p class="ion-padding-horizontal ion-text-center">Tu mejor opción de compra al alcance de un clic</p>
+          <p class="ion-padding-horizontal ion-text-center"><b>Tu mejor opción de compra</b> al alcance de un clic</p>
         </ion-text>
         <ng-container *ngIf="searchResult">
           <ion-list>
