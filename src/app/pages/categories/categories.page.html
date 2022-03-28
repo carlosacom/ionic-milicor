@@ -56,11 +56,21 @@
           </ion-list>
         </ng-container>
       </ion-col>
+      <ion-col *ngIf="!searchResult" size="12" class="ion-text-center">
+        <ion-text color="primary">
+          <div>
+            <b>Navega por</b>&nbsp;categorías
+          </div>
+          <div class="ion-margin-top">
+            <ion-icon name="arrow-down-circle-outline" size="large"></ion-icon>
+          </div>
+        </ion-text>
+      </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid>
+  <ion-grid *ngIf="!searchResult">
     <ion-row>
-      <ion-col size="6" *ngFor="let category of categories">
+      <ion-col size="6" size-xl="2" *ngFor="let category of categories">
         <ion-card (click)="goToProducts(category._id)">
           <div style="display: flex; align-items: center;justify-content: center;" class="ion-padding-top">
             <img [src]="category.image" />

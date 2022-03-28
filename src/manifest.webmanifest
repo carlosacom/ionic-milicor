@@ -1,7 +1,7 @@
 {
-  "name": "Milicor",
-  "short_name": "milicor",
-  "theme_color": "#C61A23",
+  "name": "Compara y compra",
+  "short_name": "Compara y compra",
+  "theme_color": "#182c60",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
