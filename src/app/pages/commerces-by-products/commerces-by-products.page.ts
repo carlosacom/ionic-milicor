@@ -30,7 +30,7 @@ export class CommercesByProductsPage implements OnInit{
     });
   }
   ngOnInit(): void {
-    this.showWarningPrices();
+    // this.showWarningPrices();
   }
   async showWarningPrices() {
     const alert = await this.alertController.create({

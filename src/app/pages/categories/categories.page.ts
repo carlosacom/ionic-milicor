@@ -40,7 +40,6 @@ export class CategoriesPage implements OnInit {
     if (this.searchValue !== '') {
       this.backend.getProductsAndCategories(this.searchValue).then(response => {
         this.searchResult = response;
-        console.log(response);
       }).catch(error => {
         console.error(error);
       });

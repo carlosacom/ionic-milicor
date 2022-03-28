@@ -37,3 +37,13 @@
 .text-secondary {
   color: var(--ion-color-secondary);
 }
+.text-primary {
+  color: var(--ion-color-primary);
+}
+.text-primary > img {
+  filter: invert(12%) sepia(58%) saturate(2388%) hue-rotate(212deg) brightness(91%) contrast(94%);
+}
+ion-card {
+  -webkit-box-shadow: 0px 1px 0px 0px var(--ion-color-primary) !important;
+  box-shadow: 0px 1px 0px 0px var(--ion-color-primary) !important;
+}

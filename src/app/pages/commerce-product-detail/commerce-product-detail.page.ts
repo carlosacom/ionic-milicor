@@ -38,7 +38,6 @@ export class CommerceProductDetailPage {
     this.backend.getProductsFilter(filter).then(response => {
       // eslint-disable-next-line no-underscore-dangle
       this.variantsProducts = response.filter(product => product._id !== this.commerceProduct.product._id );
-      console.log(this.variantsProducts);
     }).catch(error => {
       console.error(error);
     });
