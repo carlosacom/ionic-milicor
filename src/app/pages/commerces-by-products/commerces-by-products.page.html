@@ -1,33 +1,40 @@
 <app-header [showBackButton]="true" [title]="product.name"></app-header>
 <ion-content>
-  <ion-grid  class="ion-padding-vertical">
-    <ion-row class="ion-align-items-center ">
-      <ion-col size="5">
-        <img [src]="product.image" />
-      </ion-col>
-      <ion-col size="7">
-        <ion-card-title color="secondary">{{ product.name }}</ion-card-title>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-grid  class="ion-padding-vertical">
+          <ion-row class="ion-align-items-center ">
+            <ion-col size="5">
+              <img [src]="product.image" />
+            </ion-col>
+            <ion-col size="7" class="ion-hide-lg-up">
+              <ion-card-title color="secondary">{{ product.name }}</ion-card-title>
+            </ion-col>
+            <ion-col size="12" size-xl="7">
+              <ion-text color="primary" class="ion-text-center ion-margin-top ion-hide-lg-down">
+                <h1>{{ product.name }}</h1>
+              </ion-text>
+              <ion-text color="primary" class="ion-text-center ion-margin-top">
+                <h1>Establecimientos</h1>
+              </ion-text>
+              <ion-slides pager="true" [options]="slideOpts" [pager]="false">
+                <ion-slide *ngFor="let commerceByProduct of commercesByProduct" >
+                  <ion-card [routerLink]="['/commerce-product-detail', commerceByProduct._id]">
+                    <img [src]="commerceByProduct.commerce.image" style="height: 180px; width: 100%;" />
+                    <ion-card-content style="height: 100%;">
+                      <ion-card-title><b>$ {{ commerceByProduct.price | number: '0.0-2' }}</b></ion-card-title>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-slide>
+              </ion-slides>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-text color="primary" class="ion-text-center ion-margin-top">
-    <h1>Establecimientos</h1>
-  </ion-text>
-  <ion-slides pager="true" [options]="slideOpts" [pager]="false">
-    <ion-slide *ngFor="let commerceByProduct of commercesByProduct" >
-      <ion-card [routerLink]="['/commerce-product-detail', commerceByProduct._id]">
-        <img [src]="commerceByProduct.commerce.image" />
-        <ion-card-header>
-          <ion-card-title><b>{{ commerceByProduct.commerce.name }}</b></ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <h3><b>$ {{ commerceByProduct.price | number: '0.0-2' }}</b></h3>
-          <p *ngFor="let data of (commerceByProduct.data | jsonArray) "><b>{{ data.index }}:&nbsp;</b>{{ data.value }}</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
   <!-- <ion-list>
     <ion-item *ngFor="let commerceByProduct of commercesByProduct" detail [routerLink]="['/commerce-product-detail', commerceByProduct._id]">
       <ion-avatar slot="start">

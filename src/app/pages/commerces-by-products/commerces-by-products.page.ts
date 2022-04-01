@@ -13,10 +13,19 @@ export class CommercesByProductsPage implements OnInit{
   product = { name: '', description: '', content:'', image: '' };
 
   slideOpts = {
-    slidesPerView: 2,
     slideShadows: true,
     initialSlide: 1,
-    speed: 400
+    speed: 400,
+    breakpoints: {
+      // when window width is <= 320px
+      320: {
+        slidesPerView: 2,
+      },
+      // when window width is <= 640px
+      640: {
+        slidesPerView: 3,
+      }
+    }
   };
 
   constructor(

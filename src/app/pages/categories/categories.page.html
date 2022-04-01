@@ -68,9 +68,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid *ngIf="!searchResult">
-    <ion-row>
-      <ion-col size="6" size-xl="2" *ngFor="let category of categories">
+  <ion-grid fixed *ngIf="!searchResult">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" size-xl="3" *ngFor="let category of categories">
         <ion-card (click)="goToProducts(category._id)">
           <div style="display: flex; align-items: center;justify-content: center;" class="ion-padding-top">
             <img [src]="category.image" />
