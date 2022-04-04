@@ -18,7 +18,11 @@
               <ion-text color="primary" class="ion-text-center ion-margin-top">
                 <h1>Establecimientos</h1>
               </ion-text>
-              <ion-slides pager="true" [options]="slideOpts" [pager]="false">
+              <div *ngIf="(isBeginning$ | async) === false" class="swiper-button-prev" (click)="prevSlide()">
+              </div>
+              <div *ngIf="(isEnd$ | async) === false" class="swiper-button-next" (click)="nextSlide()">
+              </div>
+              <ion-slides style="margin-left: 30px; margin-right: 30px; margin-bottom: 30px;" pager="true" [options]="slideOpts"  (ionSlideWillChange)="updateSliderIconState()" (ionSlidesDidLoad)="updateSliderIconState()" #mySlider>
                 <ion-slide *ngFor="let commerceByProduct of commercesByProduct" >
                   <ion-card [routerLink]="['/commerce-product-detail', commerceByProduct._id]">
                     <img [src]="commerceByProduct.commerce.image" style="height: 180px; width: 100%;" />
@@ -28,6 +32,7 @@
                   </ion-card>
                 </ion-slide>
               </ion-slides>
+
             </ion-col>
           </ion-row>
         </ion-grid>

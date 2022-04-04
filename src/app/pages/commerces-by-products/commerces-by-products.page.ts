@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonSlides } from '@ionic/angular';
+import { from, Observable } from 'rxjs';
 import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { BackendService } from 'src/app/services/backend.service';
   styleUrls: ['./commerces-by-products.page.scss'],
 })
 export class CommercesByProductsPage implements OnInit{
+  @ViewChild('mySlider', { static: true }) slider: IonSlides;
+  isBeginning$: Observable<boolean>;
+  isEnd$: Observable<boolean>;
   commercesByProduct = [];
   product = { name: '', description: '', content:'', image: '' };
 
@@ -16,6 +20,11 @@ export class CommercesByProductsPage implements OnInit{
     slideShadows: true,
     initialSlide: 1,
     speed: 400,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
     breakpoints: {
       // when window width is <= 320px
       320: {
@@ -62,5 +71,21 @@ export class CommercesByProductsPage implements OnInit{
     }).catch(error => {
       console.error(error);
     });
+  }
+
+  nextSlide() {
+    if (this.slider) {
+      this.slider.slideNext();
+    }
+  }
+
+  prevSlide() {
+    if (this.slider) {
+      this.slider.slidePrev();
+    }
+  }
+  updateSliderIconState() {
+    this.isEnd$ = from(this.slider.isEnd());
+    this.isBeginning$ = from(this.slider.isBeginning());
   }
 }
